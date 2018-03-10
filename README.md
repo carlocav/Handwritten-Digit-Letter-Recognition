@@ -7,4 +7,4 @@ In order to test it I also created a Shiny app (using [this repository](https://
 
 In the web app I implemented a conversion process similar to the one used to get the EMNIST dataset which basically means the removal of the white spaces from the starting image, the application of a Gaussian filter, and the resizing to 28x28.
 
-The Shiny app is available [here](http://carlocavalieri.com/recognizer).
+The Shiny app is available [here](http://www.carlocavalieri.com/recognizer).
