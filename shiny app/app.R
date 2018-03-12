@@ -15,12 +15,12 @@ ui <- fluidPage(title="Handwritten Digit and Letter Recognizer",
   tags$head(tags$script(src="jquery-latest.js")),
   tags$head(tags$script(src="sketch.min.js")),
   useShinyjs(),
-  extendShinyjs("scripts/tools.js"),
-
+  extendShinyjs("scripts/tools.js"),  
+  
   fluidRow(
     h1("Handwritten Digit and Letter Recognizer", align = "center"),
     column(offset = 3, width = 6,
-    p("capable of distinguishing between digits (0-9), uppercase letters (A-Z) and some lowercase letters that can not be confused with uppercase counterparts (a, b, d, e, f, g, h, n, q, r, t)", style="font-size:160%;", align = "center")
+    p("capable of distinguishing between digits (0-9), uppercase letters (A-Z) and some lowercase letters that cannot be confused with uppercase counterparts (a, b, d, e, f, g, h, n, q, r, t)", style="font-size:140%;", align = "center")
     ),
     br(),
     br(),
@@ -72,12 +72,12 @@ ui <- fluidPage(title="Handwritten Digit and Letter Recognizer",
 
 server <- function(input, output, session) {
   sessionEnvironment = environment()
-
+  
   onclick("exportButton", {
     print("Load draw")
     js$exportCanvas()
   })
-
+  
   reactExportPNG <- reactive({
     if (is.null(input$jstextPNG) || nchar(input$jstextPNG)<=0) return()
     data = tool.htmlImageToBlob(input$jstextPNG)
@@ -85,7 +85,7 @@ server <- function(input, output, session) {
     lastRandomRow <<- -1
   })
   observe(reactExportPNG())
-
+  
   output$plotLowResImage <- renderPlot({
     reactExportPNG()
     m = tool.readPNG("data/exported.png")  # mSmall
@@ -98,12 +98,12 @@ server <- function(input, output, session) {
     box()
     par(mar = par.default)
   })
-
+  
   output$textPredict <- renderText({
-    reactExportPNG()
+    reactExportPNG()                      
     m = tool.readPNG("data/exported.png")   # mSmall
     m = matrix(t(m), nrow=1)
-    print(m)
+    #print(m)
     paste0("Output: ", predict(m))
   })
 }

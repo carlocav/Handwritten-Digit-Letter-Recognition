@@ -48,13 +48,13 @@ with (tf$name_scope("dnn"), {
 with (tf$name_scope("loss"), {
   xentropy = tf$nn$sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)
   loss = tf$reduce_mean(xentropy, name="loss")
-  loss_summary = tf$summary$scalar('log_loss', loss)
+  # loss_summary = tf$summary$scalar('log_loss', loss)
 })
 
 with (tf$name_scope("eval"), {
   y_proba = tf$nn$softmax(logits)
-  correct = tf$nn$in_top_k(logits, y, 1)
-  accuracy = tf$reduce_mean(tf$cast(correct, tf$float32))
+  # correct = tf$nn$in_top_k(logits, y, 1)
+  # accuracy = tf$reduce_mean(tf$cast(correct, tf$float32))
 })
 
 init = tf$global_variables_initializer()
